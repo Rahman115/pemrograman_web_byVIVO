@@ -2,7 +2,7 @@
 // === Ambil data API ===
 $curl = curl_init();
 curl_setopt_array($curl, [
-    CURLOPT_URL => 'http://36.91.14.43:8090/baubau.php?kolam=1',
+    CURLOPT_URL => 'http://36.91.14.43:8090/baubau.php?kolam=3',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_TIMEOUT => 15,
     CURLOPT_HTTPHEADER => [
@@ -33,7 +33,9 @@ $air_temp    = $latest['temperature'] ?? '-';
 $air_hum     = $latest['humidity'] ?? '-';
 $timestamp   = $latest['timestamp']['$date']['$numberLong'] ?? '-';
 
-$dateFormatted = (is_numeric($timestamp)) ? date('Y-m-d H:i:s', $timestamp / 1000) : '-';
+$dateFormatted = (is_numeric($timestamp)) 
+    ? date('Y-m-d H:i:s', (int) round($timestamp / 1000)) 
+    : '-';
 
 // === Rekomendasi ===
 $rekom_water_temp = ($water_temp !== '-' && $water_temp < 28) ? "Suhu air rendah: gunakan pemanas/kurangi air dingin."
@@ -87,7 +89,7 @@ body{font-family:'Poppins',sans-serif;background:#f0f2f5;margin:0;padding:0;}
 <body>
 <div class="header">
   <img src="logo.png" alt="Logo">
-  <h1>Monitoring Tambak Udang Kolam 1</h1>
+  <h1>Monitoring Tambak Udang Kolam 3</h1>
 </div>
 
 <div class="container">
